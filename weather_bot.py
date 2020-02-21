@@ -64,10 +64,10 @@ stormy  = [
     BL, Y, Y, Y, Y, BL, BL, BL, 
     Y, Y, Y, Y, BL, BL, BL, BL,
     BL, Y, Y, Y, Y, BL, BL, BL,
-    BL, BL, Y, Y, Y, BL, BL, BL,
+    BL, BL, Y, Y, Y, Y, BL, BL,
+    BL, BL, BL, Y, Y, Y, Y, BL,
+    BL, BL, BL, Y, Y, Y, BL, BL,
     BL, BL, BL, Y, Y, BL, BL, BL,
-    BL, BL, BL, Y, Y, BL, BL, BL,
-    BL, BL, BL, BL, BL, Y, BL, BL,
 ]
 
 #sense.set_pixels(sunny)
