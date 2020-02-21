@@ -59,7 +59,17 @@ snowy  = [
     W, B, B, W, W, B, B, W
 ]
 
-<<<<<<< HEAD
+stormy  = [
+    BL, BL, Y, Y, Y, Y, BL, BL,
+    BL, Y, Y, Y, Y, BL, BL, BL, 
+    Y, Y, Y, Y, BL, BL, BL, BL,
+    BL, Y, Y, Y, Y, BL, BL, BL,
+    BL, BL, Y, Y, Y, BL, BL, BL,
+    BL, BL, BL, Y, Y, BL, BL, BL,
+    BL, BL, BL, Y, Y, BL, BL, BL,
+    BL, BL, BL, BL, BL, Y, BL, BL,
+]
+
 not_found  = [
     R, R, R, R, R, R, R, R,
     R, R, W, R, R, W, R, R,
@@ -78,6 +88,8 @@ observation = owm.weather_at_place(location)
 w = observation.get_weather()
 temp = w.get_temperature('fahrenheit') 
 status = w.get_status()
+print(status)
+print(temp)
 
 r = 75
 g = 150
@@ -85,24 +97,14 @@ b = 130
 sense.show_message(status, 0.1, [r,g,b])
 sense.show_message(temp, 0.1, [r,g,b])
 
-if w.get_status() == 'Clouds':
+if status == 'Clouds':
     sense.set_pixels(clouds)
-elif w.get_status() == 'Clear':
-    sense.set_pixels(clear)
-elif w.get_status() == 'Snowy':
+elif status == 'Clear':
+    sense.set_pixels(stormy)
+elif status == 'Snowy':
     sense.set_pixels(snowy)
-elif w.get_status() == 'Rain':
+elif status == 'Rain':
     sense.set_pixels(rain)
 else:
     sense.set_pixels(not_found)
 
-stormy  = [
-    BL, BL, Y, Y, Y, Y, BL, BL,
-    BL, Y, Y, Y, Y, BL, BL, BL, 
-    Y, Y, Y, Y, BL, BL, BL, BL,
-    BL, Y, Y, Y, Y, BL, BL, BL,
-    BL, BL, Y, Y, Y, BL, BL, BL,
-    BL, BL, BL, Y, Y, BL, BL, BL,
-    BL, BL, BL, Y, Y, BL, BL, BL,
-    BL, BL, BL, BL, BL, Y, BL, BL,
-]
