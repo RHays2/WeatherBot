@@ -20,6 +20,7 @@ P = (128, 0, 128)
 N = (123, 200, 45)
 W = (255, 255, 255)
 GR = (128, 128, 128)
+BL = (0, 0, 0)
 
 sunny  = [
     B, B, B, B, B, B, B, B,
@@ -63,6 +64,17 @@ snowy  = [
     B, B, W, W, W, W, B, B,
     B, W, B, W, W, B, W, B,
     W, B, B, W, W, B, B, W
+]
+
+stormy  = [
+    BL, BL, Y, Y, Y, Y, BL, BL,
+    BL, Y, Y, Y, Y, BL, BL, BL, 
+    Y, Y, Y, Y, BL, BL, BL, BL,
+    BL, Y, Y, Y, Y, BL, BL, BL,
+    BL, BL, Y, Y, Y, BL, BL, BL,
+    BL, BL, BL, Y, Y, BL, BL, BL,
+    BL, BL, BL, Y, Y, BL, BL, BL,
+    BL, BL, BL, BL, BL, Y, BL, BL,
 ]
 
 #sense.set_pixels(sunny)
