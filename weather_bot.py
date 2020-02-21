@@ -1,8 +1,4 @@
-from sense_hat import SenseHat
-from time import sleep
-from random import choice
 import pyowm
-sense = SenseHat()
 
 R = (255, 50, 19)
 O = (255, 151, 28)
@@ -82,30 +78,20 @@ not_found  = [
 ]
 
 owm = pyowm.OWM('4dc989dc9fceac17d923773b08e23ec7')
-print("Enter a location: ")
-location = input()
-observation = owm.weather_at_place(location)
-w = observation.get_weather()
-temp = str(round(w.get_temperature('fahrenheit')['temp'], 1))
-status = w.get_status()
-degree_symbol = u'\N{DEGREE SIGN}'
-temp_and_status = status + ": " + temp
-
-r = 75
-g = 150
-b = 130
-print(temp_and_status)
-sense.show_message(temp_and_status, 0.1, [r,g,b])
-
-if status == 'Clouds':
-    sense.set_pixels(clouds)
-elif status == 'Clear':
-    sense.set_pixels(clear)
-elif status == 'Snowy':
-    sense.set_pixels(snowy)
-elif status == ('Rain' or 'Drizzle'):
-    sense.set_pixels(rain)
-elif status == 'Smoke':
-    sense.set_pixels(stormy)
-else:
-    sense.set_pixels(not_found)
+while True:
+    print("Enter a location: ")
+    location = input()
+    if location == 'exit':
+        break
+    observation = owm.weather_at_place(location)
+    w = observation.get_weather()
+    temp = str(round(w.get_temperature('fahrenheit')['temp'], 1))
+    status = w.get_status()
+    degree_symbol = u'\N{DEGREE SIGN}'
+    temp_and_status = status + ": " + temp
+    print(temp_and_status)
+    icon_statuses = ['Clouds', 'Clear', 'Snowy', 'Smoke', 'Rain', 'Drizzle']
+    if status in icon_statuses:
+        print('STATUS ICON FOUND\n')
+    else:
+        print('STATUS ICON NOT FOUND\n')
