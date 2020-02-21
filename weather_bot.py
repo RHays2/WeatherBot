@@ -13,6 +13,7 @@ P = (128, 0, 128)
 N = (123, 200, 45)
 W = (255, 255, 255)
 GR = (128, 128, 128)
+BL = (0, 0, 0)
 
 clear  = [
     B, B, B, B, B, B, B, B,
@@ -58,6 +59,7 @@ snowy  = [
     W, B, B, W, W, B, B, W
 ]
 
+<<<<<<< HEAD
 not_found  = [
     R, R, R, R, R, R, R, R,
     R, R, W, R, R, W, R, R,
@@ -93,3 +95,14 @@ elif w.get_status() == 'Rain':
     sense.set_pixels(rain)
 else:
     sense.set_pixels(not_found)
+
+stormy  = [
+    BL, BL, Y, Y, Y, Y, BL, BL,
+    BL, Y, Y, Y, Y, BL, BL, BL, 
+    Y, Y, Y, Y, BL, BL, BL, BL,
+    BL, Y, Y, Y, Y, BL, BL, BL,
+    BL, BL, Y, Y, Y, BL, BL, BL,
+    BL, BL, BL, Y, Y, BL, BL, BL,
+    BL, BL, BL, Y, Y, BL, BL, BL,
+    BL, BL, BL, BL, BL, Y, BL, BL,
+]
