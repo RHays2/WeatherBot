@@ -4,13 +4,6 @@ from random import choice
 import pyowm
 sense = SenseHat()
 
-owm = pyowm.OWM('4dc989dc9fceac17d923773b08e23ec7')
-observation = owm.weather_at_place()
-observation = owm.weather_at_place('London,GB')
-w = observation.get_weather()
-print(w.get_status())
-print(w) 
-
 R = (255, 50, 19)
 O = (255, 151, 28)
 Y = (255, 213, 0)
@@ -65,5 +58,21 @@ snowy  = [
     W, B, B, W, W, B, B, W
 ]
 
-#sense.set_pixels(sunny)
-sense.set_pixels(snowy)
+owm = pyowm.OWM('4dc989dc9fceac17d923773b08e23ec7')
+print("Enter a location: ")
+location = input()
+observation = owm.weather_at_place(location)
+w = observation.get_weather()
+
+r = 75
+g = 150
+b = 130
+sense.show_message(w.get_status(), 0.1, [r,g,b])
+print(w.get_status())
+
+if w.get_status() == 'Clouds':
+    sense.set_pixels(cloudy)
+elif w.get_status() == 'Clear':
+    sense.set_pixels(sunny)
+elif w.get_status() == 'Snowy':
+    sense.set_pixels(snowy)
