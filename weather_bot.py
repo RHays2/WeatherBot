@@ -86,24 +86,26 @@ print("Enter a location: ")
 location = input()
 observation = owm.weather_at_place(location)
 w = observation.get_weather()
-temp = w.get_temperature('fahrenheit') 
+temp = str(round(w.get_temperature('fahrenheit')['temp'], 1))
 status = w.get_status()
-print(status)
-print(temp)
+degree_symbol = u'\N{DEGREE SIGN}'
+temp_and_status = status + ": " + temp
 
 r = 75
 g = 150
 b = 130
-sense.show_message(status, 0.1, [r,g,b])
-sense.show_message(temp, 0.1, [r,g,b])
+print(temp_and_status)
+sense.show_message(temp_and_status, 0.1, [r,g,b])
 
 if status == 'Clouds':
     sense.set_pixels(clouds)
 elif status == 'Clear':
-    sense.set_pixels(stormy)
+    sense.set_pixels(clear)
 elif status == 'Snowy':
     sense.set_pixels(snowy)
-elif status == 'Rain':
+elif status == ('Rain' or 'Drizzle'):
     sense.set_pixels(rain)
+elif status == 'Smoke':
+    sense.set_pixels(stormy)
 else:
     sense.set_pixels(not_found)
