@@ -1,7 +1,14 @@
 from sense_hat import SenseHat
 from time import sleep
 from random import choice
+import pyowm
 sense = SenseHat()
+
+owm = pyowm.OWM('4dc989dc9fceac17d923773b08e23ec7')
+observation = owm.weather_at_place()
+observation = owm.weather_at_place('London,GB')
+w = observation.get_weather()
+print(w) 
 
 R = (255, 50, 19)
 O = (255, 151, 28)
@@ -56,8 +63,6 @@ snowy  = [
     B, W, B, W, W, B, W, B,
     W, B, B, W, W, B, B, W
 ]
-
-
 
 #sense.set_pixels(sunny)
 sense.set_pixels(snowy)
