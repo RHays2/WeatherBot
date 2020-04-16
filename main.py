@@ -9,19 +9,6 @@ b = 130
 blue = [0,0,255]
 sense.clear((r,g,b))
 #sense.show_message("Swag", 0.1, [r,g,b])
-'''
-sense.show_letter("G", blue)
-sleep(0.5)
-sense.show_letter("A", yellow)
-sleep(0.5)
-sense.show_letter("Y", red)
-sleep(0.5)
-sense.show_letter("S", green)
-
-faces = ["Jack", "Queen", "King", "Ace"]
-card = choice(faces)
-sense.show_message(card)
-'''
 
 R = (255, 50, 19)
 O = (255, 151, 28)
@@ -44,7 +31,6 @@ sunny  = [
 ]
 
 sense.set_pixels(sunny)
-'''
 while True:
     sense.set_rotation(0)
     sleep(0.5)
@@ -82,4 +68,3 @@ while True:
         sense.show_letter("!", red)
     else:
         sense.clear()
-'''        
