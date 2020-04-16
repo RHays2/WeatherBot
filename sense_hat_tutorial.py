@@ -8,7 +8,6 @@ g = 150
 b = 130
 blue = [0,0,255]
 sense.clear((r,g,b))
-#sense.show_message("Swag", 0.1, [r,g,b])
 
 R = (255, 50, 19)
 O = (255, 151, 28)
@@ -40,7 +39,6 @@ while True:
     sleep(0.5)
     sense.set_rotation(270)
     sleep(0.5)
-
 
 print "Pressure: ",sense.get_pressure()
 print "Temperature: ", sense.get_temperature()
