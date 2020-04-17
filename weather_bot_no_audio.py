@@ -1,9 +1,7 @@
-from gtts import gTTS
 from sense_hat import SenseHat
 from time import sleep
 from random import choice
 import pyowm
-import subprocess
 sense = SenseHat()
 
 R = (255, 50, 19)
@@ -69,7 +67,7 @@ stormy  = [
     BL, BL, Y, Y, Y, Y, BL, BL,
     BL, BL, BL, Y, Y, Y, Y, BL,
     BL, BL, BL, Y, Y, Y, BL, BL,
-    BL, BL, BL, Y, Y, BL, BL, BL
+    BL, BL, BL, Y, Y, BL, BL, BL,
 ]
 
 not_found  = [
@@ -84,46 +82,30 @@ not_found  = [
 ]
 
 owm = pyowm.OWM('4dc989dc9fceac17d923773b08e23ec7')
-# change city and country date
-location = 'Spokane, US'
-while True:      
-    for event in sense.stick.get_events():
-        if event.action == "pressed":
-            observation = owm.weather_at_place(location)
-            w = observation.get_weather()
-            temp = str(round(w.get_temperature('fahrenheit')['temp'], 1))
-            status = w.get_status()
-            degree_symbol = u'\N{DEGREE SIGN}'
-            temp_and_status = status + ": " + temp
-            r = 75
-            g = 150
-            b = 130
-            audio_status = "It is currently " + status + " outside."
-            audio_temp = "It is " + temp + " degrees."
-            print(audio_status)
-            print(temp)
-            # Passing the text and language to the engine
-            tts = gTTS(text=audio_status + audio_temp, lang='en', slow=False) 
+print("Enter a location: ")
+location = input()
+observation = owm.weather_at_place(location)
+w = observation.get_weather()
+temp = str(round(w.get_temperature('fahrenheit')['temp'], 1))
+status = w.get_status()
+degree_symbol = u'\N{DEGREE SIGN}'
+temp_and_status = status + ": " + temp
 
-            # Saving the converted audio in a wav file named sample
-            tts.save('status_audio.wav')
-            bashCommand = "omxplayer status_audio.wav"
-            process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
-            output, error = process.communicate()
+r = 75
+g = 150
+b = 130
+print(temp_and_status)
+sense.show_message(temp_and_status, 0.1, [r,g,b])
 
-            
-            print(temp_and_status)
-            sense.show_message(temp_and_status, 0.1, [r,g,b])
-            
-            if status == 'Clouds':
-                sense.set_pixels(clouds)
-            elif status == 'Clear':
-                sense.set_pixels(clear)
-            elif status == 'Snowy':
-                sense.set_pixels(snowy)
-            elif status == ('Rain' or 'Drizzle'):
-                sense.set_pixels(rain)
-            elif status == 'Smoke':
-                sense.set_pixels(stormy)
-            else:
-                sense.set_pixels(not_found)
+if status == 'Clouds':
+    sense.set_pixels(clouds)
+elif status == 'Clear':
+    sense.set_pixels(clear)
+elif status == 'Snowy':
+    sense.set_pixels(snowy)
+elif status == ('Rain' or 'Drizzle'):
+    sense.set_pixels(rain)
+elif status == 'Smoke':
+    sense.set_pixels(stormy)
+else:
+    sense.set_pixels(not_found)
